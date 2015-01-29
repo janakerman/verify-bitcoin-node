@@ -144,17 +144,12 @@
 
   console.log('Binary Header: ' + binaryHeader);
 
-  var hash1 = crypto.createHash('sha256');
-  hash1.update(binaryHeader, 'binary');
-  var pass1 = hash1.digest('binary');
 
-  console.log('Hash pass 1: ' + pass1);
+  var hash1 = crypto.createHash('sha256').update(binaryHeader, 'binary').digest('binary');
+  var hash2 = crypto.createHash('sha256').update(hash1, 'binary').digest('hex');
 
-  var hash2 = crypto.createHash('sha256');
-  hash2.update(pass1, 'binary');
-  var pass2 = hash2.digest('hex');
-
-  console.log('Hash pass 2: ' + pass2);
+  console.log('Hash pass 1: ' + hash1);
+  console.log('Hash pass 2: ' + hash2 + "\n");
 
   console.log('Final hash: 'reverseHex(pass2));
   console.log(reverseHex(hash2));
