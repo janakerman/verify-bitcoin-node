@@ -130,28 +130,27 @@
     numberToHexLE(block.getBits()) +
     numberToHexLE(block.getNonce());
 
-
+  console.log("\n==== Verifying Block ====")
   console.log('Version: ' + numberToHexLE(block.getVersion()));
   console.log('Hash Prev Block: ' + reverseHex(block.getHashPrevBlock()));
   console.log('Merkle Root: ' + reverseHex(block.getHashMerkleRoot()));
   console.log('Time: ' + numberToHexLE(block.getTime()));
   console.log('Bits: ' + numberToHexLE(block.getBits()));
-  console.log('Nonce: ' + numberToHexLE(block.getNonce()));
+  console.log('Nonce: ' + numberToHexLE(block.getNonce()) + "\n");
 
-  console.log('Header Hex: ' + headerHex);
+  console.log("==== Concatenated Header Hex ====");
+  console.log('Header Hex: ' + headerHex + "\n");
 
   var binaryHeader = hex2Bin(headerHex);
-
-  console.log('Binary Header: ' + binaryHeader);
-
 
   var hash1 = crypto.createHash('sha256').update(binaryHeader, 'binary').digest('binary');
   var hash2 = crypto.createHash('sha256').update(hash1, 'binary').digest('hex');
 
+  console.log("==== Hashing ====");
   console.log('Hash pass 1: ' + hash1);
   console.log('Hash pass 2: ' + hash2 + "\n");
 
-  console.log('Final hash: 'reverseHex(pass2));
+  console.log("==== Final Hash ====");
   console.log(reverseHex(hash2));
 
 })();
