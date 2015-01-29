@@ -157,5 +157,6 @@
   console.log('Hash pass 2: ' + pass2);
 
   console.log('Final hash: 'reverseHex(pass2));
+  console.log(reverseHex(hash2));
 
 })();
